@@ -7,19 +7,16 @@ class Species(ABC):
 
 
 class Speciex(Species):
-    def __init__(self, genome:str, gender_f: bool, fertility: float, generation = None):
+    def __init__(self, genome:str, gender_f: bool, fertility: float, generation: int):
         self.genome = genome
         bases = ["A", "C", "G", "T"]
         if not all(base in bases for base in self.genome):
             raise ValueError(f"Genome contains invalid characters: {genome}. Bases must be A, G, T, C.")
         if len(self.genome) != 10:
             raise ValueError('genome must be of 10 characters')
-        if generation is None:
-            self.generation = 0
-        else:
-            self.generation = generation
         self.gender_f = gender_f
         self.fertility = fertility
+        self.generation = generation
         self.trait1 = self.genome[2:5]
         self.trait2 = self.genome[-3:-1]
         #dizionari:{sequenza: frequenza}
